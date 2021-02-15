@@ -1,0 +1,12 @@
+#header {
+    height: 10vh;
+}
+
+#main-content {
+    height: 80vh;
+    background-color: antiquewhite;
+}
+
+#footer {
+    height: 10vh;
+}
