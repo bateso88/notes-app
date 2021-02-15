@@ -34,3 +34,12 @@ function testNotEqual(function_call, notExpected) {
     console.log(`Expected not to get ${notExpected}, but got ${actual}`);
   }
 }
+
+function testArrayContains(array, item) {
+  if (array.includes(item)) {
+    console.log("Pass");
+  } else {
+    console.log("Fail");
+    console.log(`Expected ${array} to include ${item} but it didn't`);
+  }
+}
