@@ -1,13 +1,23 @@
 function interface() {
     let root = document.getElementById('root');
     
-    let model = new Model();
+    let notebook = new Notebook();
     
-    // root.innerHTML = model.sayHello(); 
-    // root.innerHTML = "I'm an interface"
-
     root.innerHTML = createHeader() + createMainContent() + createFooter();
+     
+    let main = document.getElementById('main-content')
 
+    main.innerHTML = notebook.newNote();
+
+    let note = document.getElementById('note');
+
+    note.addEventListener('submit', event => {
+        event.preventDefault();
+        notebook.addNote(notetext.value);
+        document.getElementById('main-content').innerHTML = notebook.printNotes();
+    })
+
+   
 }
 
 interface();

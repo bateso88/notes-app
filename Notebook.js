@@ -1,9 +1,22 @@
-class Model {
+class Notebook {
     constructor() {
-        self.greeting = "Hello, I'm a model"
+        this.notes = []
     }
 
-    sayHello() {
-        return self.greeting;
+    newNote() {
+        return '<form id="note"><textarea id="notetext" cols="30" rows="10"></textarea><button type="submit">Submit</button></form>'
+    }
+
+    addNote(note) {
+        this.notes.push(note);
+        // console.log(this.notes);
+    }
+
+    printNotes() {
+        let x = this.notes.map(note => `<p>${note}</p>`).join('')
+        console.log(x);
+        return x;
+        // console.log(x.join())
+        // return x.join('');
     }
 }
