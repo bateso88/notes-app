@@ -3,7 +3,7 @@ var notExpected = 3;
 var number_1 = 1;
 var number_2 = 2;
 var instance = [];
-var method = includes;
+
 
 function sum(a, b) {
   return a + b;
@@ -12,6 +12,19 @@ function sum(a, b) {
 function subtract(a, b) {
   return a - b;
 }
+
+
+// clearForTakeOff(plane) {
+//     if (this.isStormy()) {
+//       throw new Error("cannot takeoff during storm");
+//     }
+//     this._hangar = [];
+//   }
+
+function returnsError() {
+  throw new Error("This is an error")
+}
+
 
 function testName(string) {
   console.log(string);
@@ -46,6 +59,8 @@ function testArrayContains(array, item) {
   }
 }
 
+
+//  This one doesn't work
 function testHasMethod(instance, method) {
   if (instance.method != undefined) {
     console.log("Pass");
@@ -54,3 +69,22 @@ function testHasMethod(instance, method) {
     console.log(`Expected ${instance} to respond to ${method}`);
   }
 }
+
+//  This one doesn't work
+function testRaisesError(function_call) {
+  let thereWasAnError;
+  try {
+    function_call();
+  } catch (error) {
+    thereWasAnError = true
+    console.log(error)
+  }
+  if (thereWasAnError) {
+    console.log("Pass");
+  } else {
+    console.log("Fail");
+    console.log("Expected to raise an error but nothing was raised");
+  }
+}
+
+
