@@ -6,10 +6,16 @@ function sum(a, b) {
   return a + b
 }
 
-function testEqual (number_1, number_2, expected) {
-  if (sum(number_1, number_2) === expected) {
+function subtract(a, b) {
+  return a - b
+}
+
+function testEqual (function_call, expected) {
+  let actual = function_call
+  if (actual === expected) {
     console.log('Pass')
   } else {
     console.log('Fail')
+    console.log(`Expected to get ${expected}, but got ${actual}`)
   }
 }
