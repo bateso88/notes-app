@@ -2,6 +2,8 @@ var expected = 3;
 var notExpected = 3;
 var number_1 = 1;
 var number_2 = 2;
+var instance = [];
+var method = includes;
 
 function sum(a, b) {
   return a + b;
@@ -41,5 +43,14 @@ function testArrayContains(array, item) {
   } else {
     console.log("Fail");
     console.log(`Expected ${array} to include ${item} but it didn't`);
+  }
+}
+
+function testHasMethod(instance, method) {
+  if (instance.method != undefined) {
+    console.log("Pass");
+  } else {
+    console.log("Fail");
+    console.log(`Expected ${instance} to respond to ${method}`);
   }
 }
