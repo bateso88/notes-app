@@ -1,25 +1,9 @@
-var expected = 3;
-var notExpected = 3;
-var number_1 = 1;
-var number_2 = 2;
-var instance = [];
+function testInterface() {
+  let root = document.getElementById("root")
 
-
-function sum(a, b) {
-  return a + b;
 }
 
-function subtract(a, b) {
-  return a - b;
-}
-
-
-// clearForTakeOff(plane) {
-//     if (this.isStormy()) {
-//       throw new Error("cannot takeoff during storm");
-//     }
-//     this._hangar = [];
-//   }
+testInterface()
 
 function returnsError() {
   throw new Error("This is an error")
@@ -27,11 +11,11 @@ function returnsError() {
 
 
 function testName(string) {
-  console.log(string);
+  console.log(`Test: ${string}`);
 }
 
-function testEqual(function_call, expected) {
-  let actual = function_call;
+function testEqual(callback, expected) {
+  let actual = callback;
   if (actual === expected) {
     console.log("Pass");
   } else {
@@ -40,8 +24,8 @@ function testEqual(function_call, expected) {
   }
 }
 
-function testNotEqual(function_call, notExpected) {
-  let actual = function_call;
+function testNotEqual(callback, notExpected) {
+  let actual = callback;
   if (actual != notExpected) {
     console.log("Pass");
   } else {
@@ -50,7 +34,7 @@ function testNotEqual(function_call, notExpected) {
   }
 }
 
-function testArrayContains(array, item) {
+function testStringOrArrayContains(array, item) {
   if (array.includes(item)) {
     console.log("Pass");
   } else {
@@ -70,11 +54,10 @@ function testHasMethod(instance, method) {
   }
 }
 
-//  This one doesn't work
-function testRaisesError(function_call) {
+function testRaisesError(callback) {
   let thereWasAnError;
   try {
-    function_call();
+    callback();
   } catch (error) {
     thereWasAnError = true
     console.log(error)
