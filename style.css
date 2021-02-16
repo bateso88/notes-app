@@ -2,8 +2,21 @@
     height: 10vh;
 }
 
+#note-capture {
+    height: 35vh;
+}
+
+button {
+    display: block;
+}
+
+textarea {
+    border: none;
+    font-size: 1.5rem;
+}
+
 #main-content {
-    height: 80vh;
+    height: 65vh;
     background-color: antiquewhite;
 }
 
