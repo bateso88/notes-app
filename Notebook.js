@@ -13,7 +13,7 @@ class Notebook {
     }
 
     printNotes() {
-        let x = this.notes.map((note, idx) => `<p class="single-note" data-noteID="${idx}>${note}</p>`).join('')
+        let x = this.notes.map((note, idx) => `<p class="single-note" data-noteID="${idx}">${note}</p>`).join('')
         console.log(x);
         let prefix = "<div id='notes-list'>"
         let suffix = '</div>'
