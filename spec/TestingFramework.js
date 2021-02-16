@@ -1,25 +1,9 @@
-var expected = 3;
-var notExpected = 3;
-var number_1 = 1;
-var number_2 = 2;
-var instance = [];
+function testInterface() {
+  let root = document.getElementById("root")
 
-
-function sum(a, b) {
-  return a + b;
 }
 
-function subtract(a, b) {
-  return a - b;
-}
-
-
-// clearForTakeOff(plane) {
-//     if (this.isStormy()) {
-//       throw new Error("cannot takeoff during storm");
-//     }
-//     this._hangar = [];
-//   }
+testInterface()
 
 function returnsError() {
   throw new Error("This is an error")
