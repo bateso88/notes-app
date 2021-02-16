@@ -30,8 +30,8 @@ function testName(string) {
   console.log(string);
 }
 
-function testEqual(function_call, expected) {
-  let actual = function_call;
+function testEqual(callback, expected) {
+  let actual = callback;
   if (actual === expected) {
     console.log("Pass");
   } else {
@@ -40,8 +40,8 @@ function testEqual(function_call, expected) {
   }
 }
 
-function testNotEqual(function_call, notExpected) {
-  let actual = function_call;
+function testNotEqual(callback, notExpected) {
+  let actual = callback;
   if (actual != notExpected) {
     console.log("Pass");
   } else {
@@ -50,7 +50,7 @@ function testNotEqual(function_call, notExpected) {
   }
 }
 
-function testArrayContains(array, item) {
+function testStringAndArrayContains(array, item) {
   if (array.includes(item)) {
     console.log("Pass");
   } else {
@@ -70,11 +70,10 @@ function testHasMethod(instance, method) {
   }
 }
 
-//  This one doesn't work
-function testRaisesError(function_call) {
+function testRaisesError(callback) {
   let thereWasAnError;
   try {
-    function_call();
+    callback();
   } catch (error) {
     thereWasAnError = true
     console.log(error)
