@@ -14,4 +14,9 @@ testEqual(notebook.notes[notebook.notes.length - 1], "a note")
 
 testName("addNote definitely puts note into notes list")
 notebook.addNote("a note")
-testStringAndArrayContains(notebook.notes, "a note")
+testStringOrArrayContains(notebook.notes, "a note")
+
+testName("printNotes makes a new note appear")
+notebook.addNote("another")
+testStringOrArrayContains(notebook.printNotes(), "<p>another</p>")
+

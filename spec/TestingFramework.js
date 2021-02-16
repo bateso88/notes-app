@@ -50,7 +50,7 @@ function testNotEqual(callback, notExpected) {
   }
 }
 
-function testStringAndArrayContains(array, item) {
+function testStringOrArrayContains(array, item) {
   if (array.includes(item)) {
     console.log("Pass");
   } else {
