@@ -27,7 +27,7 @@ function returnsError() {
 
 
 function testName(string) {
-  console.log(string);
+  console.log(`Test: ${string}`);
 }
 
 function testEqual(callback, expected) {
