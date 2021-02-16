@@ -1,18 +1,18 @@
 function interface() {
     let root = document.getElementById('root');
-    
+
     let notebook = new Notebook();
-    
+
     // root.innerHTML = createHeader() + createMainContent() + createFooter();
     root.innerHTML = createNoteCapture() + createMainContent();
-     
+
     let capture = document.getElementById('note-capture')
 
     capture.innerHTML = notebook.newNote();
 
-    let note = document.getElementById('note');
+    let noteForm = document.getElementById('note-form');
 
-    note.addEventListener('submit', event => {
+    noteForm.addEventListener('submit', event => {
         event.preventDefault();
         console.log(event);
         console.log(notetext)
@@ -22,7 +22,13 @@ function interface() {
         document.getElementById('main-content').innerHTML = notebook.printNotes();
     })
 
-   
+    let notesList = document.getElementById('notes-list');
+
+    notesList.addEventListener('click', event => {
+        console.log("note was clicked!");
+    })
+
+
 }
 
 interface();
