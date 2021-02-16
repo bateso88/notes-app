@@ -18,6 +18,7 @@ function interface() {
         console.log(notetext)
         console.log(notetext.value)
         notebook.addNote(notetext.value);
+        notetext.value = "";
         document.getElementById('main-content').innerHTML = notebook.printNotes();
     })
 
@@ -36,6 +37,10 @@ function createNoteCapture() {
 
 function createMainContent() {
     return '<div id="main-content"></div>'
+}
+
+function fullScreenNote() {
+    return '<div id="full-note"></div>'
 }
 
 function createFooter() {

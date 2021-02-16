@@ -13,7 +13,7 @@ class Notebook {
     }
 
     printNotes() {
-        let x = this.notes.map(note => `<p>${note}</p>`).join('')
+        let x = this.notes.map((note, idx) => `<p><a href="#" class="single-note" data-noteID="${idx}">${note}</a></p>`).join('')
         console.log(x);
         return x;
         // console.log(x.join())

@@ -13,11 +13,16 @@ button {
 textarea {
     border: none;
     font-size: 1.5rem;
+    outline: none;
 }
 
 #main-content {
     height: 65vh;
     background-color: antiquewhite;
+}
+
+#full-note {
+    height: 100vh;
 }
 
 #footer {
