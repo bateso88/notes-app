@@ -1,4 +1,5 @@
 function interface() {
+
   let root = document.getElementById("root");
 
   let notebook = new Notebook();
@@ -9,15 +10,24 @@ function interface() {
   let capture = document.getElementById("note-capture");
 
   capture.innerHTML = notebook.newNote();
+  
+  let noteForm = document.getElementById('note-form');
 
-  let note = document.getElementById("note");
-
-  note.addEventListener("submit", (event) => {
+  noteForm.addEventListener("submit", (event) => {
     event.preventDefault();
     notebook.addNote(notetext.value);
     notebook.addLink(notetext.value);
+    notetext.value = "";
     document.getElementById("main-content").innerHTML = notebook.printAll();
   });
+  
+   let notesList = document.getElementById('notes-list');
+
+   notesList.addEventListener('click', event => {
+        console.log("note was clicked!");
+   })
+
+
 }
 
 interface();
@@ -32,6 +42,10 @@ function createNoteCapture() {
 
 function createMainContent() {
   return '<div id="main-content"></div>';
+}
+
+function fullScreenNote() {
+    return '<div id="full-note"></div>'
 }
 
 function createFooter() {
