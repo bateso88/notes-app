@@ -51,3 +51,24 @@ function fullScreenNote() {
 function createFooter() {
   return '<div id="footer"></div>';
 }
+
+function getPostData() {
+    return fetch("http://api.openweathermap.org/data/2.5/weather?q=london&appid=39f4e0936bb0edbcca55a829a6e33bc3&units=metric").then(response => {
+        // let variable = response.json();    
+        // console.log(variable)  
+        return response.json()
+    })
+  }
+  
+  function renderPost(postData) {
+    let postHeadingHTML = `<h1>${postData.title}</h1>`;
+    let postWithLinebreaksHTML = postData.body.replaceAll("\n", "<br>\n");
+    let postBodyHTML = `<p>${postWithLinebreaksHTML}</p>`;
+    return `${postHeadingHTML}${postBodyHTML}`;
+  }
+  
+  getPostData().then(post => {
+    let rendered = renderPost(post);
+    document.getElementById("main").innerHTML = rendered;
+  });
+
