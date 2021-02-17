@@ -1,32 +1,31 @@
 function interface() {
-    let root = document.getElementById('root');
 
-    let notebook = new Notebook();
+  let root = document.getElementById("root");
 
-    // root.innerHTML = createHeader() + createMainContent() + createFooter();
-    root.innerHTML = createNoteCapture() + createMainContent();
+  let notebook = new Notebook();
 
-    let capture = document.getElementById('note-capture')
+  // root.innerHTML = createHeader() + createMainContent() + createFooter();
+  root.innerHTML = createNoteCapture() + createMainContent();
 
-    capture.innerHTML = notebook.newNote();
+  let capture = document.getElementById("note-capture");
 
-    let noteForm = document.getElementById('note-form');
+  capture.innerHTML = notebook.newNote();
+  
+  let noteForm = document.getElementById('note-form');
 
-    noteForm.addEventListener('submit', event => {
-        event.preventDefault();
-        console.log(event);
-        console.log(notetext)
-        console.log(notetext.value)
-        notebook.addNote(notetext.value);
-        notetext.value = "";
-        document.getElementById('main-content').innerHTML = notebook.printNotes();
-    })
+  noteForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    notebook.addNote(notetext.value);
+    notebook.addLink(notetext.value);
+    notetext.value = "";
+    document.getElementById("main-content").innerHTML = notebook.printAll();
+  });
+  
+   let notesList = document.getElementById('notes-list');
 
-    let notesList = document.getElementById('notes-list');
-
-    notesList.addEventListener('click', event => {
+   notesList.addEventListener('click', event => {
         console.log("note was clicked!");
-    })
+   })
 
 
 }
@@ -34,15 +33,15 @@ function interface() {
 interface();
 
 function createHeader() {
-    return '<div id="header"></div>'
+  return '<div id="header"></div>';
 }
 
 function createNoteCapture() {
-    return '<div id="note-capture"></div>'
+  return '<div id="note-capture"></div>';
 }
 
 function createMainContent() {
-    return '<div id="main-content"></div>'
+  return '<div id="main-content"></div>';
 }
 
 function fullScreenNote() {
@@ -50,5 +49,5 @@ function fullScreenNote() {
 }
 
 function createFooter() {
-    return '<div id="footer"></div>'
+  return '<div id="footer"></div>';
 }
