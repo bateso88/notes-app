@@ -18,15 +18,31 @@ function interface() {
     notebook.addNote(notetext.value);
     notebook.addLink(notetext.value);
     notetext.value = "";
-    document.getElementById("main-content").innerHTML = notebook.printAll();
+    document.getElementById("links-list").innerHTML = notebook.printLinks();
   });
   
-   let notesList = document.getElementById('notes-list');
+   let linksList = document.getElementById('links-list');
 
-   notesList.addEventListener('click', event => {
-        console.log("note was clicked!");
-   })
-
+   linksList.addEventListener('click', (e) => {
+    //    console.log(e);
+        const singleLink = e.path.find((item) => {
+        if (item.classList) {
+            return item.classList.contains('single-link');
+        } else {
+            return false;
+        }
+        });
+        if (singleLink) {
+        const linkID = singleLink.getAttribute('data-linkID');
+        // console.log(`Note found: ${notebook.links[linkID]}`)
+        // window.alert(notebook.notes[linkID]);
+        let preNote = linksList.innerHTML;
+        linksList.innerHTML = '<h1>' + notebook.notes[linkID] + '</h1>' + '<button id="back">Back</button>';
+        document.getElementById('back').addEventListener('click', (e) => {
+            linksList.innerHTML = preNote;
+        })
+        }
+})
 
 }
 
@@ -41,7 +57,7 @@ function createNoteCapture() {
 }
 
 function createMainContent() {
-  return '<div id="main-content"></div>';
+  return '<div id="main-content"><div id="links-list"></div></div>';
 }
 
 function fullScreenNote() {
