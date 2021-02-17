@@ -16,15 +16,19 @@ function interface() {
   noteForm.addEventListener("submit", (event) => {
     event.preventDefault();
     //////
-    getPostData('Hello, :earth_africa:').then(post => {
-        let rendered = renderPost(post);
-        document.getElementById("main").innerHTML = rendered;
+    getPostData(notetext.value).then(post => {
+        let rendered = post.emojified_text
+        notebook.addNote(rendered);
+        notebook.addLink(rendered);
+        notetext.value = "";
+        document.getElementById("links-list").innerHTML = notebook.printLinks();
+        // document.getElementById("main").innerHTML = rendered;
     });
     ///////
-    notebook.addNote(notetext.value);
-    notebook.addLink(notetext.value);
-    notetext.value = "";
-    document.getElementById("links-list").innerHTML = notebook.printLinks();
+    // notebook.addNote(notetext.value);
+    // notebook.addLink(notetext.value);
+    // notetext.value = "";
+    // document.getElementById("links-list").innerHTML = notebook.printLinks();
   });
   
    let linksList = document.getElementById('links-list');
@@ -86,8 +90,8 @@ function getPostData(text) {
     });
 }
 
-function renderPost(postData) {
-    let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
-    return `${postHeadingHTML}`;
-}
+// function renderPost(postData) {
+//     let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
+//     return `${postHeadingHTML}`;
+// }
 
