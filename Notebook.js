@@ -4,7 +4,7 @@ class Notebook {
     }
 
     newNote() {
-        return '<form id="note-form"><textarea id="notetext" cols="56" rows="8"></textarea><button type="submit">Submit</button></form>'
+        return '<form id="note-form"><textarea id="notetext" cols="56" rows="8"></textarea><button type="submit" class="btn-submit"><i class="fas fa-pen-square"></i></button></form>'
     }
 
     addNote(note) {
@@ -13,11 +13,14 @@ class Notebook {
     }
 
     printNotes() {
-        let x = this.notes.map((note, idx) => `<p class="single-note" data-noteID="${idx}">${note}</p>`).join('')
-        console.log(x);
-        let prefix = "<div id='notes-list'>"
-        let suffix = '</div>'
-        return prefix + x + suffix;
+        let x = '<ul>'
+        x += this.notes.map((note, idx) => `<li class="single-note" data-noteID="${idx}">${note}</li>`).join('')
+        x += '</ul>'
+        // console.log(x);
+        let prefix = '<div id="notes-list"><ul>'
+        let suffix = '</ul></div>'
+        // return prefix + x + suffix;
+        return x;
         // console.log(x.join())
         // return x.join('');
     }
