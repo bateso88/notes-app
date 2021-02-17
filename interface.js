@@ -15,6 +15,12 @@ function interface() {
 
   noteForm.addEventListener("submit", (event) => {
     event.preventDefault();
+
+    getPostData('Hello, :earth_africa:').then(post => {
+        let rendered = renderPost(post);
+        document.getElementById("main").innerHTML = rendered;
+    });
+    
     notebook.addNote(notetext.value);
     notebook.addLink(notetext.value);
     notetext.value = "";
@@ -67,3 +73,21 @@ function fullScreenNote() {
 function createFooter() {
   return '<div id="footer"></div>';
 }
+
+function getPostData(text) {
+    return fetch("https://makers-emojify.herokuapp.com/",{
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: `{"text": "${text}"}`
+    }).then(response => {
+        return response.json();
+    });
+}
+
+function renderPost(postData) {
+    let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
+    return `${postHeadingHTML}`;
+}
+
