@@ -28,3 +28,11 @@ textarea {
 #footer {
     height: 10vh;
 }
+
+.single-link {
+    cursor: pointer;
+}
+
+.single-link:hover {
+    color: blue;
+}

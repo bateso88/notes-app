@@ -31,11 +31,12 @@ class Notebook {
 
   printLinks() {
     let x = this.links
-      .map((link) => `<a href="index.html">${link}</a></br>`)
+      .map((link, idx) => `<p class="single-link" data-linkID="${idx}">${link}</p>`)
       .join("");
+
     // console.log(x);
-    return x;
     // console.log(x.join())
+    return x;
     // return x.join('');
   }
 
