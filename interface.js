@@ -1,11 +1,11 @@
 function interface() {
 
   let root = document.getElementById("root");
-
   let notebook = new Notebook();
-
+  
   // root.innerHTML = createHeader() + createMainContent() + createFooter();
   root.innerHTML = createNoteCapture() + createMainContent();
+  let main = document.getElementById('main-content')
 
   let capture = document.getElementById("note-capture");
 
@@ -48,8 +48,14 @@ function interface() {
         // window.alert(notebook.notes[linkID]);
         let preNote = linksList.innerHTML;
         linksList.innerHTML = '<h1>' + notebook.notes[linkID] + '</h1>' + '<button id="back">Back</button>';
+        // capture.classList.add('hide');
+        root.classList.add('collapse')
+        // main.classList.add('full')
         document.getElementById('back').addEventListener('click', (e) => {
-            linksList.innerHTML = preNote;
+          linksList.innerHTML = preNote;
+          // capture.classList.remove('hide');
+          // main.classList.remove('full')
+          root.classList.remove('collapse')
         })
         }
 })
