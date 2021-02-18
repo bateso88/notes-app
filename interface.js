@@ -21,6 +21,7 @@ function interface() {
       notebook.addNote(rendered);
       notebook.addLink(rendered);
       document.getElementById("links-list").innerHTML = notebook.printLinks();
+      notetext.value = "";
     });
   });
   
