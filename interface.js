@@ -10,7 +10,7 @@ function interface() {
   let capture = document.getElementById("note-capture");
 
   capture.innerHTML = notebook.newNote();
-  
+
   let noteForm = document.getElementById('note-form');
 
   noteForm.addEventListener("submit", (event) => {
@@ -18,19 +18,15 @@ function interface() {
     //////
     getPostData(notetext.value).then(post => {
         let rendered = post.emojified_text
+        console.log(rendered)
         notebook.addNote(rendered);
         notebook.addLink(rendered);
         notetext.value = "";
         document.getElementById("links-list").innerHTML = notebook.printLinks();
-        // document.getElementById("main").innerHTML = rendered;
     });
-    ///////
-    // notebook.addNote(notetext.value);
-    // notebook.addLink(notetext.value);
-    // notetext.value = "";
-    // document.getElementById("links-list").innerHTML = notebook.printLinks();
+
   });
-  
+
    let linksList = document.getElementById('links-list');
 
    linksList.addEventListener('click', (e) => {
@@ -80,10 +76,10 @@ function createFooter() {
 
 function getPostData(text) {
     return fetch("https://makers-emojify.herokuapp.com/",{
-        method: 'POST', 
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-        }, 
+        },
         body: `{"text": "${text}"}`
     }).then(response => {
         return response.json();
