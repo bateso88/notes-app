@@ -10,15 +10,16 @@ class Notebook {
 
   addNote(note) {
     this.notes.push(note);
-    console.log(this.notes);
   }
 
   addLink(link) {
     this.links.push(this.abbreviateNote(link));
   }
 
-  storeNote(note) {
-    localStorage.setItem("note", note);
+  storeNote() {
+    console.log(this.notes)
+    console.log(JSON.stringify(this.notes))
+    localStorage.setItem("notes", JSON.stringify(this.notes));
   }
 
   storeLink(link) {
@@ -26,7 +27,7 @@ class Notebook {
   }
 
   retrieveNote() {
-    return localStorage.getItem("note");
+    return JSON.parse(localStorage.getItem("notes"));
   }
 
   retrieveLink() {
