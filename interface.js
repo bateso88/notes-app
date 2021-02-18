@@ -1,20 +1,15 @@
 function interface() {
   let root = document.getElementById("root");
-
   let notebook = new Notebook();
-
-  // root.innerHTML = createHeader() + createMainContent() + createFooter();
+  
   root.innerHTML = createNoteCapture() + createMainContent();
+  let main = document.getElementById('main-content')
 
   let capture = document.getElementById("note-capture");
 
   capture.innerHTML = notebook.newNote();
 
   let noteForm = document.getElementById("note-form");
-
-  // let storedNotes = document.getElementById("local-storage");
-
-  // storedNotes.innerHTML = notebook.retrieveNotes();
 
   document.getElementById("links-list").innerHTML = notebook.printLinks();
 
@@ -28,6 +23,28 @@ function interface() {
       document.getElementById("links-list").innerHTML = notebook.printLinks();
     });
   });
+  
+   let linksList = document.getElementById('links-list');
+
+   linksList.addEventListener('click', (e) => {
+        const singleLink = e.path.find((item) => {
+        if (item.classList) {
+            return item.classList.contains('single-link');
+        } else {
+            return false;
+        }
+        });
+        if (singleLink) {
+        const linkID = singleLink.getAttribute('data-linkID');
+        let preNote = linksList.innerHTML;
+        linksList.innerHTML = '<h1>' + notebook.notes[linkID] + '</h1>' + '<button id="back">Back</button>';
+        root.classList.add('collapse')
+        document.getElementById('back').addEventListener('click', (e) => {
+          linksList.innerHTML = preNote;
+          root.classList.remove('collapse')
+        })
+        }
+})
 
   let linksList = document.getElementById("links-list");
 
@@ -87,8 +104,3 @@ function getPostData(text) {
     return response.json();
   });
 }
-
-// function renderPost(postData) {
-//     let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
-//     return `${postHeadingHTML}`;
-// }
