@@ -15,10 +15,20 @@ function interface() {
 
   noteForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    notebook.addNote(notetext.value);
-    notebook.addLink(notetext.value);
-    notetext.value = "";
-    document.getElementById("links-list").innerHTML = notebook.printLinks();
+    //////
+    getPostData(notetext.value).then(post => {
+        let rendered = post.emojified_text
+        notebook.addNote(rendered);
+        notebook.addLink(rendered);
+        notetext.value = "";
+        document.getElementById("links-list").innerHTML = notebook.printLinks();
+        // document.getElementById("main").innerHTML = rendered;
+    });
+    ///////
+    // notebook.addNote(notetext.value);
+    // notebook.addLink(notetext.value);
+    // notetext.value = "";
+    // document.getElementById("links-list").innerHTML = notebook.printLinks();
   });
   
    let linksList = document.getElementById('links-list');
@@ -67,3 +77,21 @@ function fullScreenNote() {
 function createFooter() {
   return '<div id="footer"></div>';
 }
+
+function getPostData(text) {
+    return fetch("https://makers-emojify.herokuapp.com/",{
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json'
+        }, 
+        body: `{"text": "${text}"}`
+    }).then(response => {
+        return response.json();
+    });
+}
+
+// function renderPost(postData) {
+//     let postHeadingHTML = `<h1>${postData.emojified_text}</h1>`;
+//     return `${postHeadingHTML}`;
+// }
+
