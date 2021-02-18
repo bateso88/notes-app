@@ -1,43 +1,64 @@
 class Notebook {
   constructor() {
-    this.notes = [];
-    this.links = [];
-  }
+    if (!Object.keys(localStorage).includes("links") || !Object.keys(localStorage).includes("notes"))  {
+      this.notes = []
+      this.links = []
+    } else {
+    this.notes = this.retrieveNotes()
+    this.links = this.retrieveLinks()
 
-
-    newNote() {
-        return '<form id="note-form"><textarea id="notetext" cols="56" rows="8"></textarea><button type="submit">Submit</button></form>'
     }
 
+  }
+
+  newNote() {
+    return '<form id="note-form"><textarea id="notetext" cols="56" rows="8"></textarea><button type="submit">Submit</button></form>';
+  }
 
   addNote(note) {
     this.notes.push(note);
-    // console.log(this.notes);
+    this.storeNotes()
   }
-
 
   addLink(link) {
     this.links.push(this.abbreviateNote(link));
-    // console.log(this.notes);
+    this.storeLinks()
+  }
+
+  storeNotes() {
+    console.log(this.notes)
+    console.log(JSON.stringify(this.notes))
+    localStorage.setItem("notes", JSON.stringify(this.notes));
+  }
+
+  storeLinks() {
+    localStorage.setItem("links", JSON.stringify(this.links));
+  }
+
+  retrieveNotes() {
+    return JSON.parse(localStorage.getItem("notes"));
+  }
+
+  retrieveLinks() {
+    return JSON.parse(localStorage.getItem("links"));
   }
 
   printNotes() {
-    let x = this.notes.map((note, idx) => `<p class="single-note" data-noteID="${idx}">${note}</p>`).join('');
-    // console.log(x);
+    let x = this.retrieveNotes()
+      .map(
+        (note, idx) => `<p class="single-note" data-noteID="${idx}">${note}</p>`
+      )
+      .join("");
     return x;
-    // console.log(x.join())
-    // return x.join('');
   }
 
   printLinks() {
     let x = this.links
-      .map((link, idx) => `<p class="single-link" data-linkID="${idx}">${link}</p>`)
+      .map(
+        (link, idx) => `<p class="single-link" data-linkID="${idx}">${link}</p>`
+      )
       .join("");
-
-    // console.log(x);
-    // console.log(x.join())
     return x;
-    // return x.join('');
   }
 
   printAll() {
