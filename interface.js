@@ -14,18 +14,16 @@ function interface() {
 
   let storedNotes = document.getElementById("local-storage");
 
-  storedNotes.innerHTML = notebook.retrieveNote();
+  storedNotes.innerHTML = notebook.retrieveNotes();
+
+  document.getElementById("links-list").innerHTML = notebook.printLinks();
 
   noteForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    //////
     getPostData(notetext.value).then((post) => {
       let rendered = post.emojified_text;
-      // console.log(rendered);
       notebook.addNote(rendered);
       notebook.addLink(rendered);
-      notebook.storeNote(rendered);
-      notebook.storeLink(rendered);
       notetext.value = "";
       document.getElementById("links-list").innerHTML = notebook.printLinks();
     });
@@ -34,7 +32,6 @@ function interface() {
   let linksList = document.getElementById("links-list");
 
   linksList.addEventListener("click", (e) => {
-    //    console.log(e);
     const singleLink = e.path.find((item) => {
       if (item.classList) {
         return item.classList.contains("single-link");
@@ -44,8 +41,6 @@ function interface() {
     });
     if (singleLink) {
       const linkID = singleLink.getAttribute("data-linkID");
-      // console.log(`Note found: ${notebook.links[linkID]}`)
-      // window.alert(notebook.notes[linkID]);
       let preNote = linksList.innerHTML;
       linksList.innerHTML =
         "<h1>" +

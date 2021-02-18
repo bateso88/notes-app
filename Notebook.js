@@ -10,32 +10,34 @@ class Notebook {
 
   addNote(note) {
     this.notes.push(note);
+    this.storeNotes()
   }
 
   addLink(link) {
     this.links.push(this.abbreviateNote(link));
+    this.storeLinks()
   }
 
-  storeNote() {
+  storeNotes() {
     console.log(this.notes)
     console.log(JSON.stringify(this.notes))
     localStorage.setItem("notes", JSON.stringify(this.notes));
   }
 
-  storeLink(link) {
-    localStorage.setItem("link", link);
+  storeLinks() {
+    localStorage.setItem("links", JSON.stringify(this.links));
   }
 
-  retrieveNote() {
+  retrieveNotes() {
     return JSON.parse(localStorage.getItem("notes"));
   }
 
-  retrieveLink() {
-    return localStorage.getItem("link");
+  retrieveLinks() {
+    return JSON.parse(localStorage.getItem("links"));
   }
 
   printNotes() {
-    let x = this.notes
+    let x = this.retrieveNotes()
       .map(
         (note, idx) => `<p class="single-note" data-noteID="${idx}">${note}</p>`
       )
@@ -44,7 +46,7 @@ class Notebook {
   }
 
   printLinks() {
-    let x = this.links
+    let x = this.retrieveLinks()
       .map(
         (link, idx) => `<p class="single-link" data-linkID="${idx}">${link}</p>`
       )
