@@ -12,9 +12,9 @@ function interface() {
 
   let noteForm = document.getElementById("note-form");
 
-  let storedNotes = document.getElementById("local-storage");
+  // let storedNotes = document.getElementById("local-storage");
 
-  storedNotes.innerHTML = notebook.retrieveNotes();
+  // storedNotes.innerHTML = notebook.retrieveNotes();
 
   document.getElementById("links-list").innerHTML = notebook.printLinks();
 

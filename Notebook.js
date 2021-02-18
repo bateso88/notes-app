@@ -1,7 +1,14 @@
 class Notebook {
   constructor() {
-    this.notes = [];
-    this.links = [];
+    if (!Object.keys(localStorage).includes("links") || !Object.keys(localStorage).includes("notes"))  {
+      this.notes = []
+      this.links = []
+    } else {
+    this.notes = this.retrieveNotes()
+    this.links = this.retrieveLinks()
+
+    }
+
   }
 
   newNote() {
@@ -46,7 +53,7 @@ class Notebook {
   }
 
   printLinks() {
-    let x = this.retrieveLinks()
+    let x = this.links
       .map(
         (link, idx) => `<p class="single-link" data-linkID="${idx}">${link}</p>`
       )
