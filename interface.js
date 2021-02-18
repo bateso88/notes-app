@@ -3,7 +3,6 @@ function interface() {
   let notebook = new Notebook();
   
   root.innerHTML = createNoteCapture() + createMainContent();
-  let main = document.getElementById('main-content')
 
   let capture = document.getElementById("note-capture");
 
@@ -15,60 +14,37 @@ function interface() {
 
   noteForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    getPostData(notetext.value).then((post) => {
+    let formText = notetext.value
+    formText = formText.replace(/(\r\n|\n|\r)/gm, ""); // Newline characters were messing up the API fetch - This removes them
+    getPostData(formText).then((post) => {
       let rendered = post.emojified_text;
       notebook.addNote(rendered);
       notebook.addLink(rendered);
-      notetext.value = "";
       document.getElementById("links-list").innerHTML = notebook.printLinks();
     });
   });
   
-   let linksList = document.getElementById('links-list');
-
-   linksList.addEventListener('click', (e) => {
-        const singleLink = e.path.find((item) => {
-        if (item.classList) {
-            return item.classList.contains('single-link');
-        } else {
-            return false;
-        }
-        });
-        if (singleLink) {
+  let linksList = document.getElementById('links-list');
+  
+  linksList.addEventListener('click', (e) => {
+    const singleLink = e.path.find((item) => {
+    if (item.classList) {
+        return item.classList.contains('single-link');
+    } else {
+        return false;
+    }
+    });
+    if (singleLink) {
         const linkID = singleLink.getAttribute('data-linkID');
         let preNote = linksList.innerHTML;
         linksList.innerHTML = '<h1>' + notebook.notes[linkID] + '</h1>' + '<button id="back">Back</button>';
         root.classList.add('collapse')
         document.getElementById('back').addEventListener('click', (e) => {
-          linksList.innerHTML = preNote;
-          root.classList.remove('collapse')
+            linksList.innerHTML = preNote;
+            root.classList.remove('collapse')
         })
-        }
-})
-
-  let linksList = document.getElementById("links-list");
-
-  linksList.addEventListener("click", (e) => {
-    const singleLink = e.path.find((item) => {
-      if (item.classList) {
-        return item.classList.contains("single-link");
-      } else {
-        return false;
-      }
-    });
-    if (singleLink) {
-      const linkID = singleLink.getAttribute("data-linkID");
-      let preNote = linksList.innerHTML;
-      linksList.innerHTML =
-        "<h1>" +
-        notebook.notes[linkID] +
-        "</h1>" +
-        '<button id="back">Back</button>';
-      document.getElementById("back").addEventListener("click", (e) => {
-        linksList.innerHTML = preNote;
-      });
     }
-  });
+    })
 }
 
 interface();
