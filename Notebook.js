@@ -4,11 +4,9 @@ class Notebook {
       this.notes = []
       this.links = []
     } else {
-    this.notes = this.retrieveNotes()
-    this.links = this.retrieveLinks()
-
+      this.notes = this.retrieveNotes()
+      this.links = this.retrieveLinks()
     }
-
   }
 
   newNote() {
@@ -26,8 +24,6 @@ class Notebook {
   }
 
   storeNotes() {
-    console.log(this.notes)
-    console.log(JSON.stringify(this.notes))
     localStorage.setItem("notes", JSON.stringify(this.notes));
   }
 
@@ -43,15 +39,6 @@ class Notebook {
     return JSON.parse(localStorage.getItem("links"));
   }
 
-  printNotes() {
-    let x = this.retrieveNotes()
-      .map(
-        (note, idx) => `<p class="single-note" data-noteID="${idx}">${note}</p>`
-      )
-      .join("");
-    return x;
-  }
-
   printLinks() {
     let x = this.links
       .map(
@@ -61,11 +48,15 @@ class Notebook {
     return x;
   }
 
-  printAll() {
-    return this.printLinks() + this.printNotes();
+  abbreviateNote(note) {
+    return note.substring(0, 20) + this.dots(note);
   }
 
-  abbreviateNote(note) {
-    return note.substring(0, 20);
+  dots(note) {
+    if(note.length<20) {
+      return ""
+    } else {
+      return "..."
+    }
   }
 }
