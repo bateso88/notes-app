@@ -10,7 +10,7 @@ class Notebook {
   }
 
   newNote() {
-    return '<form id="note-form"><textarea id="notetext" cols="56" rows="8"></textarea><button type="submit">Submit</button></form>';
+    return '<form id="note-form"><textarea id="notetext" cols="56" rows="8"></textarea><button class="btn form" type="submit"><i class="fas fa-pencil-alt"></i></button></form>';
   }
 
   addNote(note) {

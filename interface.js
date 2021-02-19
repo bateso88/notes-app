@@ -38,7 +38,7 @@ function interface() {
     if (singleLink) {
         const linkID = singleLink.getAttribute('data-linkID');
         let preNote = linksList.innerHTML;
-        linksList.innerHTML = '<h1>' + notebook.notes[linkID] + '</h1>' + '<button id="back">Back</button>';
+        linksList.innerHTML = '<div id="full-note">' + notebook.notes[linkID] + '<button id="back" class="btn back"><i class="fas fa-arrow-circle-up"></i></button></div>';
         root.classList.add('collapse')
         document.getElementById('back').addEventListener('click', (e) => {
             linksList.innerHTML = preNote;
