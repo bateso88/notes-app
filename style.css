@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 #root {
@@ -9,7 +10,7 @@
 }
 
 #root.collapse {
-        transform: translateY(-220px);
+        transform: translateY(-350px);
     }
 
 #header {
@@ -17,23 +18,32 @@
 }
 
 #note-capture {
-    height: 220px
+    height: 350px;
+    border: 1px solid green;
 }
 
 button {
     display: block;
+    margin: 1rem;
+    padding: 0.5rem
 }
 
 textarea {
+    margin: 1rem;
+    padding: 1.5rem;
     border: none;
     font-size: 1.5rem;
     outline: none;
+    position: relative;
+    resize: none;
+    border-radius: 0.8rem;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5)
 }
 
 #main-content {
-    height: 65vh;
-    position: relative;
-    background-color: antiquewhite;
+    /* height: 50vh; */
+    /* position: relative; */
+    border: 1px solid blue;
 }
 
 #full-note {
